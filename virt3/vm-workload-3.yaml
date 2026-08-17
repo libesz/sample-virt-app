@@ -49,11 +49,8 @@ spec:
         - name: rootdisk
           persistentVolumeClaim:
             claimName: vm-3-pvc
-          name: rootdisk
         - name: cloudinitvolume
           cloudInitNoCloud:
             userData: "#cloud-config"
             networkDataSecretRef: 
               name: vm-workload-3-secret
-          name: my-vmi-secret
-          name: cloudinitdisk
