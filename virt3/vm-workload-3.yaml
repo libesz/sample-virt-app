@@ -24,7 +24,7 @@ spec:
   template:
     metadata:
       labels:
-        network.kubevirt.io/headlessService: headless
+        network.kubevirt.io/heasdlessService: headless
     spec:
       domain:
         devices:
