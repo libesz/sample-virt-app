@@ -51,11 +51,10 @@ spec:
           persistentVolumeClaim:
             claimName: vm-3-pvc
           name: rootdisk
-        - cloudInitNoCloud:
-            userData: |
-              #cloud-config
-              chpasswd:
-                expire: false
-              password: vfpp-tll2-ak1y
-              user: centos
+        - name: cloudinitvolume
+          cloudInitNoCloud:
+            userData: "#cloud-config"
+            networkDataSecretRef: 
+              name: vm-workload-3-secret
+          name: my-vmi-secret
           name: cloudinitdisk
