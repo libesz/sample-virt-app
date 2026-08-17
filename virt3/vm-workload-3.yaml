@@ -43,7 +43,7 @@ spec:
       networks:
         - name: nic-salmon-guan-58
           multus:
-            networkName: test-cudn
+            networkName: vm3-cudn
       subdomain: headless
       volumes:
         - dataVolume:
