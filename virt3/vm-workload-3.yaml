@@ -1,0 +1,61 @@
+apiVersion: kubevirt.io/v1
+kind: VirtualMachine
+metadata:
+  name: vm-workload-3
+  namespace: default
+spec:
+  dataVolumeTemplates:
+    - metadata:
+        name: vm-workload-3-volume
+      spec:
+        sourceRef:
+          kind: DataSource
+          name: centos-stream9
+          namespace: openshift-virtualization-os-images
+        storage:
+          resources:
+            requests:
+              # Match cirros-source memory requirements.
+              # See https://github.com/cirros-dev/cirros/issues/53
+              memory: 256Mi
+              storage: 30Gi
+          storageClassName: ibmc-vpc-block-10iops-tier
+  instancetype:
+    name: u1.medium
+  preference:
+    name: centos.stream9
+  runStrategy: Always
+  template:
+    metadata:
+      labels:
+        network.kubevirt.io/headlessService: headless
+    spec:
+      domain:
+        devices:
+          autoattachPodInterface: false
+          disks:
+            - bootOrder: 1
+              name: rootdisk
+          interfaces:
+            - model: virtio
+              name: nic-magenta-limpet-32
+              state: up
+              bridge: {}
+      networks:
+        - name: nic-magenta-limpet-32
+          multus:
+            networkName: test-cudn
+      subdomain: headless
+      volumes:
+        - name: rootdisk
+          persistentVolumeClaim:
+            claimName: vm-3-pvc
+          name: rootdisk
+        - cloudInitNoCloud:
+            userData: |
+              #cloud-config
+              chpasswd:
+                expire: false
+              password: vfpp-tll2-ak1y
+              user: centos
+          name: cloudinitdisk
