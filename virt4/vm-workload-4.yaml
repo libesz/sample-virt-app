@@ -1,0 +1,51 @@
+apiVersion: kubevirt.io/v1
+kind: VirtualMachine
+metadata:
+  name: vm4
+spec:
+  dataVolumeTemplates:
+    - metadata:
+        name: vm4-volume
+      spec:
+        sourceRef:
+          kind: DataSource
+          name: centos-stream9
+          namespace: openshift-virtualization-os-images
+        storage:
+          resources:
+            requests:
+              storage: 30Gi
+          storageClassName: ocs-storagecluster-ceph-rbd-virtualization
+  instancetype:
+    name: u1.medium
+  preference:
+    name: centos.stream9
+  runStrategy: Always
+  template:
+    metadata:
+      labels:
+        network.kubevirt.io/heasdlessService: headless
+    spec:
+      domain:
+        devices:
+          autoattachPodInterface: false
+          disks:
+            - bootOrder: 1
+              name: rootdisk
+            - disk:
+                bus: virtio
+              name: cloudinitdisk
+          interfaces:
+            - model: virtio
+              name: nic-salmon-guan-58
+              state: up
+              bridge: {}
+      networks:
+        - name: nic-salmon-guan-58
+          multus:
+            networkName: vm4-cudn
+      subdomain: headless
+      volumes:
+        - dataVolume:
+            name: vm4-volume
+          name: rootdisk
