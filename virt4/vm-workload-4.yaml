@@ -54,3 +54,4 @@ spec:
             #cloud-config
             user: centos
             password: centos
+          name: cloudinitdisk
