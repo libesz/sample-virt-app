@@ -46,11 +46,16 @@ spec:
             networkName: test-cudn
       subdomain: headless
       volumes:
-        - name: rootdisk
-          persistentVolumeClaim:
-            claimName: vm-3-pvc
-        - name: cloudinitdisk
-          cloudInitNoCloud:
-            userData: "#cloud-config"
-            networkDataSecretRef: 
+        - dataVolume:
+            name: vm3-volume
+          name: rootdisk
+        - cloudInitNoCloud:
+            userData: |
+              #cloud-config
+              chpasswd:
+                expire: false
+              password: tyq2-zgbz-qiw0
+              user: centos
+            networkDataSecretRef:
               name: vm-workload-3-secret
+          name: cloudinitdisk
