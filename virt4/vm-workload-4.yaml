@@ -32,9 +32,6 @@ spec:
           disks:
             - bootOrder: 1
               name: rootdisk
-            - disk:
-                bus: virtio
-              name: cloudinitdisk
           interfaces:
             - model: virtio
               name: nic-salmon-guan-58
