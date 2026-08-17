@@ -50,8 +50,8 @@ spec:
             name: vm4-volume
           name: rootdisk
         - cloudInitNoCloud:
-          userData: |-
-            #cloud-config
-            user: centos
-            password: centos
-          name: cloudinitdisk
+            userData: |-
+              #cloud-config
+              user: centos
+              password: centos
+            name: cloudinitdisk
