@@ -1,3 +1,4 @@
+# cudn.yaml
 apiVersion: k8s.ovn.org/v1
 kind: ClusterUserDefinedNetwork
 metadata:
@@ -9,13 +10,8 @@ spec:
       operator: In
       values: ["vm3"]
   network:
-    topology: Localnet
-    localnet:
+    topology: Layer2
+    layer2:
       role: Secondary
-      physicalNetworkName: vpc-vlans
-      ipam:
-        mode: Disabled
-      vlan:
-        mode: Access
-        access:
-          id: 128
+      subnets:
+        - "10.128.0.0/24"

@@ -1,6 +1,5 @@
 ---
 resources:
-  - vm-workload-3.yaml
   - cudn.yaml
   - networkdata.yaml
 commonLabels:
