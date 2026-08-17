@@ -7,7 +7,7 @@ spec:
     matchExpressions:
     - key: kubernetes.io/metadata.name
       operator: In
-      values: ["default"]
+      values: ["vm3"]
   network:
     topology: Localnet
     localnet:
