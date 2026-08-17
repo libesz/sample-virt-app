@@ -1,11 +1,11 @@
 apiVersion: kubevirt.io/v1
 kind: VirtualMachine
 metadata:
-  name: vm-workload-3
+  name: vm3
 spec:
   dataVolumeTemplates:
     - metadata:
-        name: vm-workload-3-volume
+        name: vm3-volume
       spec:
         sourceRef:
           kind: DataSource
@@ -14,9 +14,6 @@ spec:
         storage:
           resources:
             requests:
-              # Match cirros-source memory requirements.
-              # See https://github.com/cirros-dev/cirros/issues/53
-              memory: 256Mi
               storage: 30Gi
           storageClassName: ibmc-vpc-block-10iops-tier
   instancetype:
@@ -35,13 +32,16 @@ spec:
           disks:
             - bootOrder: 1
               name: rootdisk
+            - disk:
+                bus: virtio
+              name: cloudinitdisk
           interfaces:
             - model: virtio
-              name: nic-magenta-limpet-32
+              name: nic-salmon-guan-58
               state: up
               bridge: {}
       networks:
-        - name: nic-magenta-limpet-32
+        - name: nic-salmon-guan-58
           multus:
             networkName: test-cudn
       subdomain: headless
