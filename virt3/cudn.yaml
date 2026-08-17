@@ -1,0 +1,21 @@
+apiVersion: k8s.ovn.org/v1
+kind: ClusterUserDefinedNetwork
+metadata:
+  name: test-cudn
+spec:
+  namespaceSelector:
+    matchExpressions:
+    - key: kubernetes.io/metadata.name
+      operator: In
+      values: ["default"]
+  network:
+    topology: Localnet
+    localnet:
+      role: Secondary
+      physicalNetworkName: vpc-vlans
+      ipam:
+        mode: Disabled
+      vlan:
+        mode: Access
+        access:
+          id: 128
