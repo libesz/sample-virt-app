@@ -1,7 +1,7 @@
 apiVersion: k8s.ovn.org/v1
 kind: ClusterUserDefinedNetwork
 metadata:
-  name: test-cudn
+  name: vm3-cudn
 spec:
   namespaceSelector:
     matchExpressions:
