@@ -1,7 +1,6 @@
 ---
 resources:
-  - cudn.yaml
-  - networkdata.yaml
+  - vm-workload-3.yaml
 commonLabels:
   appname: kubevirt
 generatorOptions:
