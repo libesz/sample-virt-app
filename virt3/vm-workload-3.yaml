@@ -1,11 +1,11 @@
 apiVersion: kubevirt.io/v1
 kind: VirtualMachine
 metadata:
-  name: vm3
+  name: vm-cloudinit
 spec:
   dataVolumeTemplates:
     - metadata:
-        name: vm3-volume
+        name: vm-cloudinit-volume
       spec:
         sourceRef:
           kind: DataSource
@@ -43,11 +43,11 @@ spec:
       networks:
         - name: nic-salmon-guan-58
           multus:
-            networkName: vm3-cudn
+            networkName: vm-cloudinit-cudn
       subdomain: headless
       volumes:
         - dataVolume:
-            name: vm3-volume
+            name: vm-cloudinit-volume
           name: rootdisk
         - cloudInitNoCloud:
             userData: |
