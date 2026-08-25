@@ -43,7 +43,7 @@ spec:
       networks:
         - name: teszt
           multus:
-            networkName: vm4-cudn
+            networkName: vm5-cudn
       subdomain: headless
       volumes:
         - dataVolume:
