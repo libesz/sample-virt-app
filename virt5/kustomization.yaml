@@ -1,6 +1,6 @@
 ---
 resources:
-  - vm-workload-4.yaml
+  - vm-workload-5.yaml
   - cudn.yaml
 commonLabels:
   appname: kubevirt
