@@ -47,7 +47,7 @@ spec:
       subdomain: headless
       volumes:
         - dataVolume:
-            name: vm4-volume
+            name: vm5-volume
           name: rootdisk
         - cloudInitNoCloud:
             userData: |-
